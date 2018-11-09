@@ -8,35 +8,54 @@
 
 import Foundation
 
-protocol SearchAble {
+protocol SearchAble: Comparable {
     var searchValue :String { get }
 }
 
-struct City: Comparable {
+struct City: SearchAble, Codable {
+    
     var name = "Not Found"
     var country = "Not Found"
-    var id = "Not Found"
-    var lat = 0
-    var lon = 0
-    var searchValue = "Not Found"
-    
-    init(info: Dictionary<String,Any>) {
-        
-        if let localName = info["name"] as? String {
-            name = localName
-            searchValue = localName
-            country = (info["country"] as? String)!
-            id = (info["_id"] as? String)!
-            
-            if let coord = info["coord"] as? Dictionary<String,Int> {
-                lat = coord["lat"]!
-                lon = coord["lon"]!
-            }
-        }
+    var id = 0
+    var lat: Decimal = 0
+    var lon: Decimal = 0
+    var searchValue: String {
+        return self.name
     }
     
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case country
+        case id = "_id"
+        case coord
+
+        enum CoordKeys: String, CodingKey {
+            case lon
+            case lat
+        }
+        
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.country = try container.decode(String.self, forKey: .country)
+        self.id = try container.decode(Int.self, forKey: .id)
+
+        let coordContainer = try container.nestedContainer(keyedBy: CodingKeys.CoordKeys.self, forKey: .coord)
+        self.lat = try coordContainer.decode(Decimal.self, forKey: .lat)
+        self.lon = try coordContainer.decode(Decimal.self, forKey: .lon)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(country, forKey: .name)
+        try container.encode(id, forKey: .id)
+    }
+        
     static func == (lhs: City, rhs: City) -> Bool {
-        return lhs.name.startsWith(rhs.name)
+        return lhs.name == rhs.name
     }
     
     static func < (lhs: City, rhs: City) -> Bool {

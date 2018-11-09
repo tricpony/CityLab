@@ -8,23 +8,22 @@
 
 import Foundation
 
-struct JsonUtility {
+struct JsonUtility<T: Decodable> {
     
-    static func parseJSON(_ payload: Data?) -> ([Dictionary<String,Any>]?) {
-        guard let dataResponse = payload else {
+    static func parseJSON(_ payload: Data?) -> [T]? {
+        
+        if payload == nil {
             return nil
         }
 
-        do{
-            let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse, options: [])
+        let decoder = JSONDecoder()
+        
+        do {
+            let decoded = try decoder.decode([T].self, from: payload!)
             
-            guard let jsonDict = jsonResponse as? [[String: Any]] else {
-                return nil
-            }
-            return jsonDict
-            
-        } catch let parsingError {
-            print("JSON parse error ", parsingError)
+            return decoded
+        } catch {
+            print("Failed to decode JSON")
         }
 
         return nil

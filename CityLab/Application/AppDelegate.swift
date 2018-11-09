@@ -28,12 +28,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
-        let cityPlist = JsonUtility.parseJSON(cityData)
-        tree = BinaryTree<City>.growTree(fromJson: cityPlist!)
-        let name = tree?.search(searchValue: "Paris")
-        let unwrappedName = name?.nodeValue ?? "Empty node"
-        
-        print("**** city name: \(unwrappedName)")
+        if let cities = JsonUtility<City>.parseJSON(cityData) {
+            tree = BinaryTree<City>.growTree(fromValues: cities)
+            let name = tree?.search(searchValue: "Paris")
+            let unwrappedName = name?.nodeValue?.name ?? "Empty node"
+            let unwrappedLat = name?.nodeValue?.lat ?? 0
+            
+            print("**** city name: \(unwrappedName)")
+            print("**** latitude: \(unwrappedLat)")
+        }
         
         self.window?.rootViewController = rootVC
         

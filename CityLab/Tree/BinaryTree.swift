@@ -8,17 +8,16 @@
 
 import Foundation
 
-enum BinaryTree<T: Comparable> {
+enum BinaryTree<T: SearchAble> {
     
     case empty
     indirect case node(BinaryTree<T>, T, BinaryTree<T>)
     
-    static func growTree(fromJson: Array<[String:Any]>) -> BinaryTree<City>? {
-        var tree: BinaryTree<City> = .empty
+    static func growTree(fromValues: [T]) -> BinaryTree<T>? {
+        var tree: BinaryTree<T> = .empty
 
-        for cityInfo in fromJson {
-            let city = City(info: cityInfo)
-            tree.insert(newValue: city)
+        for nodeValue in fromValues {
+            tree.insert(newValue: nodeValue)
         }
         
         return tree
@@ -114,18 +113,18 @@ enum BinaryTree<T: Comparable> {
         }
     }
     
-    func search(searchValue: T) -> BinaryTree? {
+    func search(searchValue: String) -> BinaryTree? {
         switch self {
         case .empty:
             return nil
         case let .node(left, value, right):
             // 1
-            if searchValue == value {
+            if searchValue == value.searchValue {
                 return self
             }
             
             // 2
-            if searchValue < value {
+            if searchValue < value.searchValue {
                 return left.search(searchValue: searchValue)
             } else {
                 return right.search(searchValue: searchValue)
@@ -133,6 +132,25 @@ enum BinaryTree<T: Comparable> {
         }
     }
     
+    func searchPrefix(searchValue: String) -> BinaryTree? {
+        switch self {
+        case .empty:
+            return nil
+        case let .node(left, value, right):
+            // 1
+            if value.searchValue.startsWith(searchValue) {
+                return self
+            }
+            
+            // 2
+            if searchValue < value.searchValue {
+                return left.search(searchValue: searchValue)
+            } else {
+                return right.search(searchValue: searchValue)
+            }
+        }
+    }
+
 }
 
 extension BinaryTree: CustomStringConvertible {
