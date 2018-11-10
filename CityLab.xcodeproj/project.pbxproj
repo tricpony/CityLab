@@ -19,6 +19,10 @@
 		D1A6A5C32195DAE900FE31BB /* JsonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5C22195DAE900FE31BB /* JsonUtility.swift */; };
 		D1A6A5C72195E44700FE31BB /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5C62195E44700FE31BB /* StringExt.swift */; };
 		D1A6A5C92195E7D900FE31BB /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5C82195E7D900FE31BB /* City.swift */; };
+		D1A6A5CB219624A300FE31BB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5CA219624A300FE31BB /* SearchViewController.swift */; };
+		D1A6A5CE21962BC800FE31BB /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5CD21962BC700FE31BB /* SplitViewController.swift */; };
+		D1A6A5D021962EAB00FE31BB /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A6A5CF21962EAB00FE31BB /* Search.storyboard */; };
+		D1A6A5D221964BD700FE31BB /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5D121964BD700FE31BB /* DeviceType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		D1A6A5C22195DAE900FE31BB /* JsonUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonUtility.swift; sourceTree = "<group>"; };
 		D1A6A5C62195E44700FE31BB /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		D1A6A5C82195E7D900FE31BB /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		D1A6A5CA219624A300FE31BB /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		D1A6A5CD21962BC700FE31BB /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		D1A6A5CF21962EAB00FE31BB /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		D1A6A5D121964BD700FE31BB /* DeviceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				D1A6A5B12195B92800FE31BB /* Application */,
+				D1A6A5CC21962BC700FE31BB /* Base */,
 				D1A6A5B52195B9D200FE31BB /* Tabs */,
 				D1A6A5B42195B9D200FE31BB /* Tree */,
 				D1A6A5B72195BA9100FE31BB /* Model */,
@@ -140,6 +149,8 @@
 		D1A6A5B62195BA0C00FE31BB /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				D1A6A5CA219624A300FE31BB /* SearchViewController.swift */,
+				D1A6A5CF21962EAB00FE31BB /* Search.storyboard */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -164,6 +175,7 @@
 		D1A6A5BD2195BC5200FE31BB /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				D1A6A5D121964BD700FE31BB /* DeviceType.swift */,
 				D1A6A5C12195DAE900FE31BB /* JSON */,
 				D1A6A5C02195DACE00FE31BB /* Extensions */,
 			);
@@ -184,6 +196,14 @@
 				D1A6A5C22195DAE900FE31BB /* JsonUtility.swift */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		D1A6A5CC21962BC700FE31BB /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D1A6A5CD21962BC700FE31BB /* SplitViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +291,7 @@
 				D1A6A59C2195B83900FE31BB /* LaunchScreen.storyboard in Resources */,
 				D1A6A5992195B83900FE31BB /* Assets.xcassets in Resources */,
 				D1A6A5972195B83700FE31BB /* Main.storyboard in Resources */,
+				D1A6A5D021962EAB00FE31BB /* Search.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,11 +311,14 @@
 			files = (
 				D1A6A5C32195DAE900FE31BB /* JsonUtility.swift in Sources */,
 				D1A6A5BC2195BAD900FE31BB /* BinaryTree.swift in Sources */,
+				D1A6A5CB219624A300FE31BB /* SearchViewController.swift in Sources */,
 				D1A6A5B32195B92800FE31BB /* AppDelegate.swift in Sources */,
 				D1A6A5C72195E44700FE31BB /* StringExt.swift in Sources */,
+				D1A6A5CE21962BC800FE31BB /* SplitViewController.swift in Sources */,
 				D1A6A5942195B83700FE31BB /* DetailViewController.swift in Sources */,
 				D1A6A5922195B83700FE31BB /* MasterViewController.swift in Sources */,
 				D1A6A5C92195E7D900FE31BB /* City.swift in Sources */,
+				D1A6A5D221964BD700FE31BB /* DeviceType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

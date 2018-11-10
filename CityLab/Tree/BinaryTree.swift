@@ -139,14 +139,14 @@ enum BinaryTree<T: SearchAble> {
         case let .node(left, value, right):
             // 1
             if value.searchValue.startsWith(searchValue) {
-                return self
+                return right
             }
             
             // 2
             if searchValue < value.searchValue {
-                return left.search(searchValue: searchValue)
+                return left.searchPrefix(searchValue: searchValue)
             } else {
-                return right.search(searchValue: searchValue)
+                return right.searchPrefix(searchValue: searchValue)
             }
         }
     }
