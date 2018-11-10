@@ -71,6 +71,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         if let safeIndex = matchingIndex {
             var leadFloatingIndex = safeIndex
             
+            //binaryPrefixSearch  may have landed us in the middle our result set
+            //step backwards until we find the first match in the result set
             leadFloatingIndex = findTerminatingIndex(inArray: self.dataSource, startingAt: safeIndex)
 
             //now we need to find the end of the matching results
@@ -103,7 +105,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     
     func updateSearchResults(for searchController: UISearchController) {
         if isFiltering() {
-            
             isNarrowingSearch = lastSearchTerm.count < searchController.searchBar.text!.count
             processSearchResults(searchTerm: searchController.searchBar.text!)
             lastSearchTerm = searchController.searchBar.text!

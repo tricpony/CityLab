@@ -53,7 +53,9 @@ struct City: SearchAble, Codable {
         try container.encode(country, forKey: .name)
         try container.encode(id, forKey: .id)
     }
-        
+    
+    // MARK: - Comparable
+
     static func == (lhs: City, rhs: City) -> Bool {
         return (lhs.name == rhs.name) && (lhs.country == rhs.country)
     }
