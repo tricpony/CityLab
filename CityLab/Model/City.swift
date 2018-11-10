@@ -55,11 +55,15 @@ struct City: SearchAble, Codable {
     }
         
     static func == (lhs: City, rhs: City) -> Bool {
-        return lhs.name == rhs.name
+        return (lhs.name == rhs.name) && (lhs.country == rhs.country)
     }
     
     static func < (lhs: City, rhs: City) -> Bool {
-        return lhs.name < rhs.name
+        if lhs.name != rhs.name {
+            return lhs.name < rhs.name
+        }else{
+            return lhs.country < rhs.country
+        }
     }
     
 }

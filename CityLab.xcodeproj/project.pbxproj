@@ -23,6 +23,7 @@
 		D1A6A5CE21962BC800FE31BB /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5CD21962BC700FE31BB /* SplitViewController.swift */; };
 		D1A6A5D021962EAB00FE31BB /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A6A5CF21962EAB00FE31BB /* Search.storyboard */; };
 		D1A6A5D221964BD700FE31BB /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5D121964BD700FE31BB /* DeviceType.swift */; };
+		D1A6A5D6219740B000FE31BB /* ArrayExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5D5219740B000FE31BB /* ArrayExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		D1A6A5CD21962BC700FE31BB /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		D1A6A5CF21962EAB00FE31BB /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		D1A6A5D121964BD700FE31BB /* DeviceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
+		D1A6A5D5219740B000FE31BB /* ArrayExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				D1A6A5C62195E44700FE31BB /* StringExt.swift */,
+				D1A6A5D5219740B000FE31BB /* ArrayExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				D1A6A5C72195E44700FE31BB /* StringExt.swift in Sources */,
 				D1A6A5CE21962BC800FE31BB /* SplitViewController.swift in Sources */,
 				D1A6A5942195B83700FE31BB /* DetailViewController.swift in Sources */,
+				D1A6A5D6219740B000FE31BB /* ArrayExt.swift in Sources */,
 				D1A6A5922195B83700FE31BB /* MasterViewController.swift in Sources */,
 				D1A6A5C92195E7D900FE31BB /* City.swift in Sources */,
 				D1A6A5D221964BD700FE31BB /* DeviceType.swift in Sources */,

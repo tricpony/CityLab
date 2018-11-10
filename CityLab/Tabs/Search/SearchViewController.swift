@@ -13,6 +13,9 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     @IBOutlet weak var tableView: UITableView!
     var cityTree: BinaryTree<City>? = nil
     var dataSource = [City]()
+    var masterDataSource = [City]()
+    var lastSearchTerm = ""
+    var isNarrowingSearch = false
     let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
@@ -21,8 +24,25 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         //this will prevent bogus separator lines from displaying in an empty table
         self.tableView.tableFooterView = UIView()
 
-        initializeCityTree()
-        traverseCityTree(atNode: self.cityTree!)
+        prepareData()
+    }
+    
+    func prepareData() {
+        let cityPath = Bundle.main.path(forResource: "cities", ofType: "json")
+        let cityUrl = URL.init(fileURLWithPath: cityPath!)
+        var cityData :Data? = nil
+        
+        do {
+            cityData = try Data.init(contentsOf: cityUrl)
+        } catch {
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+        if let cities = JsonUtility<City>.parseJSON(cityData) {
+            self.dataSource = cities.sorted()
+            self.masterDataSource = self.dataSource
+            setupSearchController()
+        }
     }
     
     func initializeCityTree() {
@@ -41,21 +61,130 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         }
         
     }
-    
-    func traverseCityTree(atNode: BinaryTree<City>, load: Bool = true) {
-        let cityCount = atNode.count
-        var primerLoaded = false
 
+    func processSearchResults(searchTerm: String) {
+        
+        func findTerminatingIndex(inArray: Array<City>, startingAt: Int, direction: TraverseDirection) -> Int {
+            if startingAt == 0 {return startingAt}
+            
+            var floatingIndex = startingAt
+            var stop = false
+            
+            if direction == .left {
+                while !stop {
+                    stop = !inArray[floatingIndex-1].name.startsWith(searchTerm)
+                    if !stop {
+                        floatingIndex -= 1
+                        stop = floatingIndex == 0
+                    }
+                }
+            }else if direction == .right {
+                while !stop {
+                    stop = inArray[floatingIndex-1].name.startsWith(searchTerm)
+                    if !stop {
+                        floatingIndex -= 1
+                        stop = floatingIndex == 0
+                    }
+                }
+                floatingIndex -= 1
+            }
+
+            return floatingIndex
+        }
+        
+        if !isNarrowingSearch {
+            self.dataSource = self.masterDataSource
+        }
+        
+        let matchingIndex = self.dataSource.binaryPrefixSearch(searchTerm: searchTerm)
+        if let safeIndex = matchingIndex {
+            var leadFloatingIndex = safeIndex
+            
+            leadFloatingIndex = findTerminatingIndex(inArray: self.dataSource, startingAt: safeIndex, direction: .left)
+
+            //now we need to find the end of the matching results
+            let slice = self.dataSource[leadFloatingIndex...self.dataSource.count-1]
+            var subarray = Array(slice)
+
+            let trailFloatingIndex = subarray.binaryPrefixSearchOutOfRange(searchTerm: searchTerm)
+            subarray = Array(subarray[0...trailFloatingIndex])
+
+//            trailFloatingIndex = findTerminatingIndex(inArray: subarray, startingAt: trailFloatingIndex, direction: .right)
+            
+            self.dataSource = subarray.filter({ (nextCity) -> Bool in
+                return nextCity.name.startsWith(searchTerm)
+            })
+            
+//            self.dataSource = Array(subarray[0...trailFloatingIndex])
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    func processSearchResults(matchingCity: City) {
+        
+        //        self.dataSource.map { (nextCity) -> Bool in
+        //            print("Searching: \(nextCity.name)")
+        //
+        //            return true
+        //        }
+        let matchingIndex = self.dataSource.binarySearch(searchTerm: matchingCity.name)
+        
+        if let safeIndex = matchingIndex {
+            var floatingIndex = safeIndex
+            var stop = false
+            
+            while !stop {
+                floatingIndex -= 1
+                stop = matchingCity.name != self.dataSource[floatingIndex].name
+            }
+            
+            //now we need to find the end of the matching results
+            let slice = self.dataSource[floatingIndex...self.dataSource.count-1]
+            let subarray = Array(slice)
+            
+            self.dataSource = subarray.filter({ (nextCity) -> Bool in
+                return nextCity.name.startsWith(self.searchController.searchBar.text!)
+            })
+            self.dataSource.sort()
+            self.tableView.reloadData()
+        }
+        
+    }
+
+    func traverseCityTree(atNode: BinaryTree<City>, direction: TraverseDirection = .all) {
+        var cityCount = atNode.count
+        var primerLoaded = false
+        var traverseRoot = atNode
+        
         self.dataSource.removeAll()
         self.tableView.reloadData()
+        if direction != .all, let nodeValue = traverseRoot.nodeValue {
+            self.dataSource.append(nodeValue)
+            if let child = traverseRoot.nodeChild(whichOne: direction) {
+                traverseRoot = child
+                cityCount = traverseRoot.count + 1
+            }
+        }
+        
         DispatchQueue.global(qos: .background).async {
             var paths = [IndexPath]()
             
-            atNode.traverseInOrder(process: { (nextCity) in
+            if direction != .all {
+                paths.append(IndexPath.init(row: self.dataSource.count-1, section: 0))
+            }
+            
+            traverseRoot.traverseInOrder(process: { (nextCity) in
                 DispatchQueue.main.async {
-                    self.dataSource.append(nextCity)
+                    let passedFilter = direction != .all ? nextCity.name.startsWith(self.searchController.searchBar.text!) : true
                     
-                    if !primerLoaded {
+                    if passedFilter {
+                        self.dataSource.append(nextCity)
+                    }else{
+                        cityCount -= 1
+                    }
+                    
+                    if direction == .all && !primerLoaded {
                         let nextIndexPath = IndexPath.init(row: self.dataSource.count-1, section: 0)
                         paths.append(nextIndexPath)
 
@@ -95,9 +224,24 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     
     func updateSearchResults(for searchController: UISearchController) {
         if isFiltering() {
-            if let branch = self.cityTree?.searchPrefix(searchValue: searchController.searchBar.text!) {
-                traverseCityTree(atNode: branch)
-            }
+            
+            isNarrowingSearch = lastSearchTerm.count < searchController.searchBar.text!.count
+            processSearchResults(searchTerm: searchController.searchBar.text!)
+            lastSearchTerm = searchController.searchBar.text!
+            
+//            if let branch = self.cityTree?.searchPrefix(searchValue: searchController.searchBar.text!) {
+//
+//                if searchController.searchBar.text!.count == 1 {
+//                    traverseCityTree(atNode: branch)
+//                }else{
+//                    if let city = branch.nodeValue {
+//                        processSearchResults(matchingCity: city)
+//                    }
+//                }
+//            }
+        }else{
+            self.dataSource = self.masterDataSource
+            self.tableView.reloadData()
         }
     }
     
@@ -119,7 +263,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         var cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier(at: indexPath))
         
         if (cell == nil) {
-            cell = UITableViewCell.init(style: .default, reuseIdentifier: self.cellIdentifier(at: indexPath))
+            cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: self.cellIdentifier(at: indexPath))
         }
         
         return cell!
@@ -138,6 +282,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         let city = self.dataSource[indexPath.row]
 
         cell.textLabel?.text = city.name
+        cell.detailTextLabel?.text = city.country
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         
         return cell

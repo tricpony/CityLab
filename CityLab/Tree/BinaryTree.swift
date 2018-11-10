@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum TraverseDirection {
+    case left
+    case right
+    case all
+}
+
 enum BinaryTree<T: SearchAble> {
     
     case empty
@@ -41,22 +47,22 @@ enum BinaryTree<T: SearchAble> {
         }
     }
     
-    // 1.
-    mutating func naiveInsert(newValue: T) {
-        // 2.
-        guard case .node(var left, let value, var right) = self else {
-            // 3.
-            self = .node(.empty, newValue, .empty)
-            return
+    func nodeChild(whichOne: TraverseDirection) -> BinaryTree? {
+        switch self {
+        case let .node(left, _, right):
+            
+            switch whichOne {
+            case .left:
+                return left
+            case .right:
+                return right
+            default:
+                return self
+            }
+
+        case .empty:
+            return self
         }
-        
-        // 4. TODO: Implement naive algorithm!
-        if newValue < value {
-            left.naiveInsert(newValue: newValue)
-        } else {
-            right.naiveInsert(newValue: newValue)
-        }
-        
     }
     
     private func newTreeWithInsertedValue(newValue: T) -> BinaryTree {
@@ -139,7 +145,7 @@ enum BinaryTree<T: SearchAble> {
         case let .node(left, value, right):
             // 1
             if value.searchValue.startsWith(searchValue) {
-                return right
+                return self
             }
             
             // 2
