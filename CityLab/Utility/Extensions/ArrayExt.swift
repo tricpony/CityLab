@@ -66,9 +66,6 @@ extension Array where Element: SearchAble {
         
         while true {
             let mid = (lowerIndex + upperIndex)/2
-            let searchableValue = self[mid].searchValue
-            
-            print("*** Searching: \(searchableValue) to match \(searchTerm)")
 
             if !self[mid].searchValue.startsWith(searchTerm) {
                 return mid
