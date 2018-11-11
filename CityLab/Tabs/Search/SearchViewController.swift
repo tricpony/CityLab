@@ -135,7 +135,14 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     func updateSearchResults(for searchController: UISearchController) {
         if isFiltering() {
             isNarrowingSearch = lastSearchTerm.count < searchController.searchBar.text!.count
+            
+            //for some bogus reason re-loading the table view will occassionally trigger
+            //scrollview delegate method scrollViewDidScroll which de-activates the search
+            //and dismisses the keyboard
+            //this hack gets around that
+            self.tableView.delegate = nil
             processSearchResults(searchTerm: searchController.searchBar.text!)
+            self.tableView.delegate = self
             lastSearchTerm = searchController.searchBar.text!
         }else if searchBarIsEmpty()
         {
