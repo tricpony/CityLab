@@ -198,8 +198,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         }
         else{
             cell.cityLabel?.text = city.name
-            cell.countryLabel?.text = city.country
         }
+        cell.countryLabel?.text = city.country
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 
         return cell
