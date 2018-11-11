@@ -17,8 +17,8 @@ struct City: SearchAble, Codable {
     var name = "Not Found"
     var country = "Not Found"
     var id = 0
-    var lat: Decimal = 0
-    var lon: Decimal = 0
+    var lat: Double = 0
+    var lon: Double = 0
     var searchValue: String {
         return self.name
     }
@@ -43,8 +43,8 @@ struct City: SearchAble, Codable {
         self.id = try container.decode(Int.self, forKey: .id)
 
         let coordContainer = try container.nestedContainer(keyedBy: CodingKeys.CoordKeys.self, forKey: .coord)
-        self.lat = try coordContainer.decode(Decimal.self, forKey: .lat)
-        self.lon = try coordContainer.decode(Decimal.self, forKey: .lon)
+        self.lat = try coordContainer.decode(Double.self, forKey: .lat)
+        self.lon = try coordContainer.decode(Double.self, forKey: .lon)
     }
     
     func encode(to encoder: Encoder) throws {

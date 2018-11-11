@@ -35,10 +35,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         //enable auto cell height that uses constraints
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 45
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        
         pinwheel.isHidden = false
         pinwheel.startAnimating()
         
@@ -47,7 +44,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
             self.prepareData()
         }
     }
-    
+        
     func prepareData() {
         let cityPath = Bundle.main.path(forResource: "cities", ofType: "json")
         let cityUrl = URL.init(fileURLWithPath: cityPath!)
@@ -209,30 +206,30 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        if self.sizeClass().horizontal == .compact {
 //            tableView.deselectRow(at: indexPath, animated: true)
 //        }
-//        self.performSegue(withIdentifier: "blockDetailSegue", sender: indexPath)
-//    }
+        self.performSegue(withIdentifier: "cityDetailSegue", sender: indexPath)
+    }
     
     // MARK: - Storyboard
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//        if segue.identifier == "blockDetailSegue" {
-//            if let indexPath = sender as? IndexPath {
-//                let block: Block = fetchedResultsController().object(at: indexPath)
-//                let vc = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-//                vc.block = block
-//                vc.navigationItem.title = block.producer
-//                vc.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-//                vc.navigationItem.leftItemsSupplementBackButton = true
-//
-//                //this clears the title of the back button to leave only the chevron
-//                self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-//            }
-//        }
-//    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "cityDetailSegue" {
+            if let indexPath = sender as? IndexPath {
+                let city = self.dataSource[indexPath.row]
+                let vc = (segue.destination as! UINavigationController).topViewController as! DetailViewController
+                vc.city = city
+                vc.navigationItem.title = city.name
+                vc.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+                vc.navigationItem.leftItemsSupplementBackButton = true
+
+                //this clears the title of the back button to leave only the chevron
+                self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+            }
+        }
+    }
     
 }

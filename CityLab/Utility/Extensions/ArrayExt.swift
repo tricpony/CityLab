@@ -11,9 +11,11 @@ import Foundation
 extension Array where Element: SearchAble {
 
     func binarySearch(searchTerm: String) -> Int? {
+        
+        if self.isEmpty { return nil }
         var lowerIndex = 0;
         var upperIndex = self.count - 1
-        
+
         while true {
             let mid = (lowerIndex + upperIndex)/2
             let searchableValue = self[mid].searchValue
@@ -35,6 +37,8 @@ extension Array where Element: SearchAble {
     }
     
     func binaryPrefixSearch(searchTerm: String) -> Int? {
+        
+        if self.isEmpty { return nil }
         var lowerIndex = 0;
         var upperIndex = self.count - 1
         
@@ -61,9 +65,11 @@ extension Array where Element: SearchAble {
      then the caller must remove any remaining non-matching items in a linear way
      */
     func binaryPrefixSearchOutOfRange(searchTerm: String) -> Int {
+        
+        if self.isEmpty { return 0 }
         var lowerIndex = 0;
         var upperIndex = self.count - 1
-        
+
         while true {
             let mid = (lowerIndex + upperIndex)/2
 

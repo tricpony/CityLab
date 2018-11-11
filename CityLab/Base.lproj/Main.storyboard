@@ -15,6 +15,7 @@
                 <splitViewController id="gvc-J6-MAW" customClass="SplitViewController" customModule="CityLab" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="jkF-uH-1Sw" kind="relationship" relationship="masterViewController" id="9j0-aG-Cp9"/>
+                        <segue destination="1Xw-UR-UPP" kind="relationship" relationship="detailViewController" id="scG-ap-msg"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cb1-fh-43O" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -47,6 +48,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="69E-is-m1j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="306" y="-1407"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="VoV-CM-Bw2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Detail" id="1Xw-UR-UPP" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IWE-l7-q3u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-615" y="-927"/>
         </scene>
     </scenes>
 </document>

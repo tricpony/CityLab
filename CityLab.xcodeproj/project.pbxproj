@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D1A6A5922195B83700FE31BB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5912195B83700FE31BB /* MasterViewController.swift */; };
-		D1A6A5942195B83700FE31BB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5932195B83700FE31BB /* DetailViewController.swift */; };
 		D1A6A5972195B83700FE31BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A6A5952195B83700FE31BB /* Main.storyboard */; };
 		D1A6A5992195B83900FE31BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1A6A5982195B83900FE31BB /* Assets.xcassets */; };
 		D1A6A59C2195B83900FE31BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A6A59A2195B83900FE31BB /* LaunchScreen.storyboard */; };
@@ -25,6 +23,8 @@
 		D1A6A5D6219740B000FE31BB /* ArrayExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5D5219740B000FE31BB /* ArrayExt.swift */; };
 		D1A6A5DA2197A75300FE31BB /* CityTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5D82197A75300FE31BB /* CityTableCell.swift */; };
 		D1A6A5DB2197A75300FE31BB /* CityTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1A6A5D92197A75300FE31BB /* CityTableCell.xib */; };
+		D1A6A5DE2197C61400FE31BB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5DD2197C61400FE31BB /* DetailViewController.swift */; };
+		D1A6A5E02197C62700FE31BB /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A6A5DF2197C62700FE31BB /* Detail.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +39,6 @@
 
 /* Begin PBXFileReference section */
 		D1A6A58C2195B83700FE31BB /* CityLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D1A6A5912195B83700FE31BB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		D1A6A5932195B83700FE31BB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D1A6A5962195B83700FE31BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D1A6A5982195B83900FE31BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1A6A59B2195B83900FE31BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,6 +58,8 @@
 		D1A6A5D5219740B000FE31BB /* ArrayExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExt.swift; sourceTree = "<group>"; };
 		D1A6A5D82197A75300FE31BB /* CityTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableCell.swift; sourceTree = "<group>"; };
 		D1A6A5D92197A75300FE31BB /* CityTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableCell.xib; sourceTree = "<group>"; };
+		D1A6A5DD2197C61400FE31BB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D1A6A5DF2197C62700FE31BB /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +106,6 @@
 				D1A6A5B52195B9D200FE31BB /* Tabs */,
 				D1A6A5B72195BA9100FE31BB /* Model */,
 				D1A6A5BD2195BC5200FE31BB /* Utility */,
-				D1A6A5912195B83700FE31BB /* MasterViewController.swift */,
-				D1A6A5932195B83700FE31BB /* DetailViewController.swift */,
 				D1A6A5952195B83700FE31BB /* Main.storyboard */,
 				D1A6A5982195B83900FE31BB /* Assets.xcassets */,
 				D1A6A59A2195B83900FE31BB /* LaunchScreen.storyboard */,
@@ -147,6 +145,7 @@
 				D1A6A5D72197A61300FE31BB /* TableAssets */,
 				D1A6A5CA219624A300FE31BB /* SearchViewController.swift */,
 				D1A6A5CF21962EAB00FE31BB /* Search.storyboard */,
+				D1A6A5DC2197C5C400FE31BB /* Detail */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -210,6 +209,15 @@
 				D1A6A5D92197A75300FE31BB /* CityTableCell.xib */,
 			);
 			path = TableAssets;
+			sourceTree = "<group>";
+		};
+		D1A6A5DC2197C5C400FE31BB /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				D1A6A5DD2197C61400FE31BB /* DetailViewController.swift */,
+				D1A6A5DF2197C62700FE31BB /* Detail.storyboard */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,6 +305,7 @@
 				D1A6A5DB2197A75300FE31BB /* CityTableCell.xib in Resources */,
 				D1A6A59C2195B83900FE31BB /* LaunchScreen.storyboard in Resources */,
 				D1A6A5992195B83900FE31BB /* Assets.xcassets in Resources */,
+				D1A6A5E02197C62700FE31BB /* Detail.storyboard in Resources */,
 				D1A6A5972195B83700FE31BB /* Main.storyboard in Resources */,
 				D1A6A5D021962EAB00FE31BB /* Search.storyboard in Resources */,
 			);
@@ -319,12 +328,11 @@
 				D1A6A5C32195DAE900FE31BB /* JsonUtility.swift in Sources */,
 				D1A6A5CB219624A300FE31BB /* SearchViewController.swift in Sources */,
 				D1A6A5B32195B92800FE31BB /* AppDelegate.swift in Sources */,
+				D1A6A5DE2197C61400FE31BB /* DetailViewController.swift in Sources */,
 				D1A6A5C72195E44700FE31BB /* StringExt.swift in Sources */,
 				D1A6A5CE21962BC800FE31BB /* SplitViewController.swift in Sources */,
 				D1A6A5DA2197A75300FE31BB /* CityTableCell.swift in Sources */,
-				D1A6A5942195B83700FE31BB /* DetailViewController.swift in Sources */,
 				D1A6A5D6219740B000FE31BB /* ArrayExt.swift in Sources */,
-				D1A6A5922195B83700FE31BB /* MasterViewController.swift in Sources */,
 				D1A6A5C92195E7D900FE31BB /* City.swift in Sources */,
 				D1A6A5D221964BD700FE31BB /* DeviceType.swift in Sources */,
 			);

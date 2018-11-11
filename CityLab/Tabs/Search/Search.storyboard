@@ -64,11 +64,20 @@
                     <connections>
                         <outlet property="pinwheel" destination="W3o-5z-mN1" id="maf-Hl-rS6"/>
                         <outlet property="tableView" destination="7LL-Fc-RYY" id="FzJ-zt-fVS"/>
+                        <segue destination="8fx-jg-A5w" kind="showDetail" identifier="cityDetailSegue" id="rCU-sc-Era"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i1S-4m-3vT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-281" y="-287"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="eqZ-tT-Efb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Detail" id="8fx-jg-A5w" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1K9-0U-rQZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="407" y="-122"/>
         </scene>
     </scenes>
     <resources>
