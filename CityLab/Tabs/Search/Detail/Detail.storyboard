@@ -13,7 +13,6 @@
         <!--Navigation Controller-->
         <scene sceneID="phk-pk-QLz">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JFg-7e-5bQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="y59-BI-Akc" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Nyx-1H-tRh">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -23,6 +22,7 @@
                         <segue destination="XRz-bF-fDW" kind="relationship" relationship="rootViewController" id="ZNT-Mj-FIx"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JFg-7e-5bQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1090" y="110"/>
         </scene>
@@ -34,22 +34,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rEe-nt-OTY">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="matte_background_320x480" translatesAutoresizingMaskIntoConstraints="NO" id="QKv-lK-a33">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empty Selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEX-41-2OZ">
+                                <rect key="frame" x="70.5" y="314.5" width="234" height="38"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XNA-hg-Ie6">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="rEe-nt-OTY" firstAttribute="leading" secondItem="e47-Ri-4jI" secondAttribute="leading" id="NmO-Ca-cEH"/>
-                            <constraint firstItem="rEe-nt-OTY" firstAttribute="top" secondItem="e47-Ri-4jI" secondAttribute="top" id="ToW-XE-Oqp"/>
-                            <constraint firstItem="e47-Ri-4jI" firstAttribute="trailing" secondItem="rEe-nt-OTY" secondAttribute="trailing" id="WB2-HO-rim"/>
-                            <constraint firstItem="e47-Ri-4jI" firstAttribute="bottom" secondItem="rEe-nt-OTY" secondAttribute="bottom" id="cK6-Ak-baL"/>
+                            <constraint firstItem="QKv-lK-a33" firstAttribute="top" secondItem="e47-Ri-4jI" secondAttribute="top" id="9W1-eN-NjV"/>
+                            <constraint firstItem="e47-Ri-4jI" firstAttribute="trailing" secondItem="QKv-lK-a33" secondAttribute="trailing" id="Khk-HX-7uc"/>
+                            <constraint firstItem="xEX-41-2OZ" firstAttribute="centerY" secondItem="6lx-y6-oFp" secondAttribute="centerY" id="KtC-Ws-fFQ"/>
+                            <constraint firstItem="e47-Ri-4jI" firstAttribute="trailing" secondItem="XNA-hg-Ie6" secondAttribute="trailing" id="cmR-cu-0np"/>
+                            <constraint firstItem="xEX-41-2OZ" firstAttribute="centerX" secondItem="6lx-y6-oFp" secondAttribute="centerX" id="hW0-3h-DdX"/>
+                            <constraint firstItem="QKv-lK-a33" firstAttribute="leading" secondItem="e47-Ri-4jI" secondAttribute="leading" id="j5x-Y9-yiy"/>
+                            <constraint firstItem="XNA-hg-Ie6" firstAttribute="top" secondItem="e47-Ri-4jI" secondAttribute="top" id="lM8-9F-3Le"/>
+                            <constraint firstItem="e47-Ri-4jI" firstAttribute="bottom" secondItem="XNA-hg-Ie6" secondAttribute="bottom" id="nXq-HY-aW1"/>
+                            <constraint firstItem="e47-Ri-4jI" firstAttribute="bottom" secondItem="QKv-lK-a33" secondAttribute="bottom" id="smX-WY-ELV"/>
+                            <constraint firstItem="XNA-hg-Ie6" firstAttribute="leading" secondItem="e47-Ri-4jI" secondAttribute="leading" id="unB-aY-kYw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e47-Ri-4jI"/>
                     </view>
                     <navigationItem key="navigationItem" id="ORF-pK-u8U"/>
                     <connections>
-                        <outlet property="mapView" destination="rEe-nt-OTY" id="zx4-xk-3T4"/>
+                        <outlet property="emptySelectionLabel" destination="xEX-41-2OZ" id="27P-Y9-lk6"/>
+                        <outlet property="mapView" destination="XNA-hg-Ie6" id="WoW-e8-wiT"/>
+                        <outlet property="mattImageView" destination="QKv-lK-a33" id="mUm-9v-n8o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wcs-vU-aly" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -57,4 +74,7 @@
             <point key="canvasLocation" x="-86" y="109"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="matte_background_320x480" width="320" height="480"/>
+    </resources>
 </document>
