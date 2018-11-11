@@ -10,6 +10,7 @@ import UIKit
 
 class SearchViewController: UIViewController, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var pinwheel: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     var dataSource = [City]()
     var masterDataSource = [City]()
@@ -17,13 +18,34 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     var isNarrowingSearch = false
     let searchController = UISearchController(searchResultsController: nil)
 
+    func registerTableAssets() {
+        var nib: UINib!
+        
+        nib = UINib.init(nibName: "CityTableCell", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: CityTableCell.cell_id)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerTableAssets()
         
         //this will prevent bogus separator lines from displaying in an empty table
         self.tableView.tableFooterView = UIView()
-
-        prepareData()
+        
+        //enable auto cell height that uses constraints
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 45
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        pinwheel.isHidden = false
+        pinwheel.startAnimating()
+        
+        //allows the pinwheel to spin
+        DispatchQueue.global(qos: .background).async {
+            self.prepareData()
+        }
     }
     
     func prepareData() {
@@ -38,9 +60,17 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
         if let cities = JsonUtility<City>.parseJSON(cityData) {
-            self.dataSource = cities.sorted()
-            self.masterDataSource = self.dataSource
-            setupSearchController()
+            
+            DispatchQueue.main.async {
+                self.pinwheel.stopAnimating()
+                self.pinwheel.isHidden = true
+                self.tableView.isHidden = false
+                self.dataSource = cities.sorted()
+                self.masterDataSource = self.dataSource
+                self.tableView.reloadData()
+                self.setupSearchController()
+            }
+
         }
     }
     
@@ -85,9 +115,12 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
                 return nextCity.name.startsWith(searchTerm)
             })
             
-            self.tableView.reloadData()
         }
-        
+        else{
+            self.dataSource.removeAll()
+        }
+        self.tableView.reloadData()
+
     }
     
     func setupSearchController() {
@@ -132,7 +165,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     // MARK: - Table View
 
     func cellIdentifier(at indexPath: IndexPath) -> String {
-        return "CellID"
+        return CityTableCell.cell_id
     }
     
     func nextCellForTableView(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
@@ -154,7 +187,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = self.nextCellForTableView(tableView, at: indexPath)
+        let cell: CityTableCell = self.nextCellForTableView(tableView, at: indexPath) as! CityTableCell
         let city = self.dataSource[indexPath.row]
 
         if self.isFiltering() {
@@ -165,11 +198,11 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
                                                value: UIColor.yellow,
                                                range: NSRange.init(location: (range?.lowerBound.encodedOffset)!,
                                                                    length: (range?.upperBound.encodedOffset)! - (range?.lowerBound.encodedOffset)!))
-            cell.textLabel?.attributedText = highlightedSearchTerm
+            cell.cityLabel?.attributedText = highlightedSearchTerm
         }
         else{
-            cell.textLabel?.text = city.name
-            cell.detailTextLabel?.text = city.country
+            cell.cityLabel?.text = city.name
+            cell.countryLabel?.text = city.country
         }
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 
