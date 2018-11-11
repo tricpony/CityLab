@@ -44,7 +44,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
             self.prepareData()
         }
     }
-        
+    
     func prepareData() {
         let cityPath = Bundle.main.path(forResource: "cities", ofType: "json")
         let cityUrl = URL.init(fileURLWithPath: cityPath!)
@@ -98,7 +98,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         if let safeIndex = matchingIndex {
             var leadFloatingIndex = safeIndex
             
-            //binaryPrefixSearch  may have landed us in the middle our result set
+            //binaryPrefixSearch may have landed us in the middle our result set
             //step backwards until we find the first match in the result set
             leadFloatingIndex = findTerminatingIndex(inArray: self.dataSource, startingAt: safeIndex)
 
@@ -117,7 +117,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
             self.dataSource.removeAll()
         }
         self.tableView.reloadData()
-
     }
     
     func setupSearchController() {
@@ -222,7 +221,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
                 let city = self.dataSource[indexPath.row]
                 let vc = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 vc.city = city
-                vc.navigationItem.title = city.name
+                vc.navigationItem.title = city.name + ", " + city.country
                 vc.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 vc.navigationItem.leftItemsSupplementBackButton = true
 
