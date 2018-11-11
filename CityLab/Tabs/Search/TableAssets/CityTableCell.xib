@@ -45,14 +45,13 @@
                 <constraints>
                     <constraint firstItem="o4q-hI-iHM" firstAttribute="top" secondItem="dD0-sn-Jub" secondAttribute="bottom" id="0Z5-4R-hhn"/>
                     <constraint firstItem="o4q-hI-iHM" firstAttribute="leading" secondItem="dD0-sn-Jub" secondAttribute="leading" id="5l2-Wg-nVk"/>
-                    <constraint firstItem="jc1-IM-4s7" firstAttribute="leading" secondItem="Hxe-5N-vAF" secondAttribute="leading" id="7Pu-gM-h9o"/>
                     <constraint firstAttribute="bottom" secondItem="o4q-hI-iHM" secondAttribute="bottom" constant="7.5" id="D6i-mA-XDd"/>
                     <constraint firstItem="jc1-IM-4s7" firstAttribute="top" secondItem="o4q-hI-iHM" secondAttribute="top" id="DPP-wk-V2f"/>
-                    <constraint firstItem="jc1-IM-4s7" firstAttribute="width" secondItem="Hxe-5N-vAF" secondAttribute="width" id="OGO-7Q-uiL"/>
                     <constraint firstItem="Hxe-5N-vAF" firstAttribute="top" secondItem="dD0-sn-Jub" secondAttribute="top" id="TAI-wU-Lhh"/>
                     <constraint firstItem="dD0-sn-Jub" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="XK1-tp-zav"/>
                     <constraint firstItem="dD0-sn-Jub" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="h6C-BT-WUB"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Hxe-5N-vAF" secondAttribute="trailing" constant="5" id="kTd-7g-pOT"/>
+                    <constraint firstItem="jc1-IM-4s7" firstAttribute="trailing" secondItem="Hxe-5N-vAF" secondAttribute="trailing" id="sJt-Ep-V5D"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
