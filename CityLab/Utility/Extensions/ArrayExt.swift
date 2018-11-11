@@ -58,7 +58,6 @@ extension Array where Element: SearchAble {
             }
         }
     }
-    
 
     /*
      Here we want to snip off trailing items not matching searchTerm to shrink the result set

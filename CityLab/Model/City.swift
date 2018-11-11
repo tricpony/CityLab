@@ -54,6 +54,10 @@ struct City: SearchAble, Codable {
         try container.encode(id, forKey: .id)
     }
     
+    func cityDisplayTitle() -> String {
+        return name + ", " + country
+    }
+
     // MARK: - Comparable
 
     static func == (lhs: City, rhs: City) -> Bool {

@@ -221,7 +221,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
                 let city = self.dataSource[indexPath.row]
                 let vc = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 vc.city = city
-                vc.navigationItem.title = city.name + ", " + city.country
+                vc.navigationItem.title = city.cityDisplayTitle()
                 vc.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 vc.navigationItem.leftItemsSupplementBackButton = true
 
