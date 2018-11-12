@@ -116,7 +116,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         else{
             self.dataSource.removeAll()
         }
-        self.tableView.reloadData()
     }
     
     func setupSearchController() {
@@ -160,6 +159,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
             //this hack gets around that
             self.tableView.delegate = nil
             processSearchResults(searchTerm: searchController.searchBar.text!)
+            self.tableView.reloadData()
             self.tableView.delegate = self
             lastSearchTerm = searchController.searchBar.text!
         }else if searchBarIsEmpty()
