@@ -127,10 +127,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         self.searchController.searchBar.placeholder = "Search City"
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.definesPresentationContext = true
-        
-        print("*** Search bar is loaded")
-        //accessability
-        self.searchController.searchBar.accessibilityTraits = UIAccessibilityTraits.searchField
     }
 
     // MARK: - Size Class
