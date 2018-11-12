@@ -36,10 +36,6 @@ class CityLabTests: RootCityLabTests {
         XCTAssertNotNil(controllerUnderTest.searchController.searchBar, "Search controller has no search bar")
     }
     
-    func testSUT_hasSearchBarHasDelegate() {
-        XCTAssertNotNil(controllerUnderTest.searchController.searchBar.delegate, "Search bar has no delegate")
-    }
-    
     func testSUT_canPerformPrefixSearchPass() {
         controllerUnderTest.processSearchResults(searchTerm: "New O")
         XCTAssertEqual(controllerUnderTest.dataSource.count, 2, "Search results count should be 2")
