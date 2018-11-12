@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
 
-    func startsWith(_ prefix: String) -> Bool {
+    public func startsWith(_ prefix: String) -> Bool {
         return lowercased().hasPrefix(prefix.lowercased())
     }
 
