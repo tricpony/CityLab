@@ -98,7 +98,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         if let safeIndex = matchingIndex {
             var leadFloatingIndex = safeIndex
             
-            //binaryPrefixSearch may have landed us in the middle our result set
+            //binaryPrefixSearch may have landed us in the middle of our result set
             //step backwards until we find the first match in the result set
             leadFloatingIndex = findTerminatingIndex(inArray: self.dataSource, startingAt: safeIndex)
 
@@ -125,9 +125,27 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         self.searchController.obscuresBackgroundDuringPresentation = false
         self.searchController.searchBar.barTintColor = UIColor.black
         self.navigationItem.searchController = self.searchController
-        self.searchController.searchBar.placeholder = "Search Producer"
+        self.searchController.searchBar.placeholder = "Search City"
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.definesPresentationContext = true
+    }
+
+    // MARK: - Size Class
+
+    class func sizeClass() -> (vertical: UIUserInterfaceSizeClass, horizontal: UIUserInterfaceSizeClass) {
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        let window: UIWindow = appDelegate.window!
+        let vSizeClass: UIUserInterfaceSizeClass!
+        let hSizeClass: UIUserInterfaceSizeClass!
+        
+        hSizeClass = window.traitCollection.horizontalSizeClass
+        vSizeClass = window.traitCollection.verticalSizeClass
+        
+        return (vertical: vSizeClass, horizontal: hSizeClass)
+    }
+
+    func sizeClass() -> (vertical: UIUserInterfaceSizeClass, horizontal: UIUserInterfaceSizeClass) {
+        return SearchViewController.sizeClass()
     }
 
     // MARK: - UISearchResultsUpdating
@@ -213,9 +231,9 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if self.sizeClass().horizontal == .compact {
-//            tableView.deselectRow(at: indexPath, animated: true)
-//        }
+        if self.sizeClass().horizontal == .compact {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
         self.performSegue(withIdentifier: "cityDetailSegue", sender: indexPath)
     }
     
