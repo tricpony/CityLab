@@ -47,6 +47,10 @@ struct City: SearchAble, Codable {
         self.lon = try coordContainer.decode(Double.self, forKey: .lon)
     }
     
+    /*
+        Deliberately left incomplete as it is never used
+        It was added to satisfy the compiler's Comparable protocol error
+    */
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
@@ -54,6 +58,8 @@ struct City: SearchAble, Codable {
         try container.encode(id, forKey: .id)
     }
     
+    // MARK: - Derived Logic
+
     func cityDisplayTitle() -> String {
         return name + ", " + country
     }

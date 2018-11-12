@@ -15,8 +15,8 @@ class CityLabTests: RootCityLabTests {
     override func setUp() {
         super.setUp()
         
-        let mainSB = UIStoryboard(name: "Search", bundle: nil)
-        let searchNavVC = mainSB.instantiateViewController(withIdentifier: "Search") as? SearchViewController
+        let searchSB = UIStoryboard(name: "Search", bundle: nil)
+        let searchNavVC = searchSB.instantiateViewController(withIdentifier: "Search") as? SearchViewController
         
         controllerUnderTest = searchNavVC
         controllerUnderTest.dataSource = self.cityArray

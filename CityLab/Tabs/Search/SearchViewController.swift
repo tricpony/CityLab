@@ -71,6 +71,10 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         }
     }
     
+    /*
+        This does the heavy lifting of the search, invoked on each keystroke
+        the datasource will shrink with each keystroke
+    */
     func processSearchResults(searchTerm: String) {
         
         func findTerminatingIndex(inArray: Array<City>, startingAt: Int) -> Int {
@@ -91,6 +95,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         }
         
         if !isNarrowingSearch {
+            //user just deleted a character from the search bar so we must search the full city array
             self.dataSource = self.masterDataSource
         }
         
@@ -114,12 +119,12 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
             
         }
         else{
+            //nothing matched
             self.dataSource.removeAll()
         }
     }
     
     func setupSearchController() {
-        
         self.searchController.searchResultsUpdater = self
         self.searchController.obscuresBackgroundDuringPresentation = false
         self.searchController.searchBar.barTintColor = UIColor.black
@@ -173,6 +178,9 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         return searchController.searchBar.text?.isEmpty ?? true
     }
     
+    /*
+        True when the search is active and the search bar is NOT empty
+    */
     func isFiltering() -> Bool {
         return searchController.isActive && !searchBarIsEmpty()
     }
@@ -215,6 +223,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
             let highlightedSearchTerm = NSMutableAttributedString(string: city.name)
             let range = city.name.range(of: searchController.searchBar.text!, options: .caseInsensitive)
             
+            //highlight the city name characters matching search bar
             highlightedSearchTerm.addAttribute(.backgroundColor,
                                                value: UIColor.yellow,
                                                range: NSRange.init(location: (range?.lowerBound.encodedOffset)!,

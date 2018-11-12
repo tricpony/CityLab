@@ -10,6 +10,9 @@ import Foundation
 
 extension String {
 
+    /*
+        Made public to make it visible inside unit test cases
+    */
     public func startsWith(_ prefix: String) -> Bool {
         return lowercased().hasPrefix(prefix.lowercased())
     }

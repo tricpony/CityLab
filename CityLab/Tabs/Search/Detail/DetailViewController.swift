@@ -25,6 +25,7 @@ class DetailViewController: UIViewController {
             centerMapOnLocation(location: initialLocation);
         }else
         {
+            //this supports the regular size class to display a placeholder view when no city is selected
             mapView.isHidden = true
             emptySelectionLabel.isHidden = false
             mattImageView.isHidden = false
