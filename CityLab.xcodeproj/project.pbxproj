@@ -25,10 +25,23 @@
 		D1A6A5DB2197A75300FE31BB /* CityTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1A6A5D92197A75300FE31BB /* CityTableCell.xib */; };
 		D1A6A5DE2197C61400FE31BB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5DD2197C61400FE31BB /* DetailViewController.swift */; };
 		D1A6A5E02197C62700FE31BB /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A6A5DF2197C62700FE31BB /* Detail.storyboard */; };
+		D1F268832199E43700E635D4 /* CityLabBinarySearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F268822199E43700E635D4 /* CityLabBinarySearchTests.swift */; };
+		D1F2688A2199E56D00E635D4 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5C82195E7D900FE31BB /* City.swift */; };
+		D1F2688B2199E58900E635D4 /* JsonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5C22195DAE900FE31BB /* JsonUtility.swift */; };
+		D1F2688C2199E5B500E635D4 /* ArrayExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6A5D5219740B000FE31BB /* ArrayExt.swift */; };
+		D1F2689C219A1A3500E635D4 /* RootCityLabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F2689B219A1A3500E635D4 /* RootCityLabTests.swift */; };
+		D1F2689D219A1B0E00E635D4 /* RootCityLabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F2689B219A1A3500E635D4 /* RootCityLabTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		D1A6A5A32195B83900FE31BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D1A6A5842195B83700FE31BB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D1A6A58B2195B83700FE31BB;
+			remoteInfo = CityLab;
+		};
+		D1F268852199E43700E635D4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D1A6A5842195B83700FE31BB /* Project object */;
 			proxyType = 1;
@@ -60,6 +73,12 @@
 		D1A6A5D92197A75300FE31BB /* CityTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableCell.xib; sourceTree = "<group>"; };
 		D1A6A5DD2197C61400FE31BB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D1A6A5DF2197C62700FE31BB /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
+		D1F268802199E43700E635D4 /* CityLabBinarySearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CityLabBinarySearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1F268822199E43700E635D4 /* CityLabBinarySearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityLabBinarySearchTests.swift; sourceTree = "<group>"; };
+		D1F268842199E43700E635D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1F268932199F42C00E635D4 /* CityLabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityLabUITests.swift; sourceTree = "<group>"; };
+		D1F268952199F42C00E635D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1F2689B219A1A3500E635D4 /* RootCityLabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCityLabTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +96,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D1F2687D2199E43700E635D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -85,6 +111,8 @@
 			children = (
 				D1A6A58E2195B83700FE31BB /* CityLab */,
 				D1A6A5A52195B83900FE31BB /* CityLabTests */,
+				D1F268812199E43700E635D4 /* CityLabBinarySearchTests */,
+				D1F268922199F42C00E635D4 /* CityLabUITests */,
 				D1A6A58D2195B83700FE31BB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,6 +122,7 @@
 			children = (
 				D1A6A58C2195B83700FE31BB /* CityLab.app */,
 				D1A6A5A22195B83900FE31BB /* CityLabTests.xctest */,
+				D1F268802199E43700E635D4 /* CityLabBinarySearchTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,6 +146,7 @@
 		D1A6A5A52195B83900FE31BB /* CityLabTests */ = {
 			isa = PBXGroup;
 			children = (
+				D1F2689B219A1A3500E635D4 /* RootCityLabTests.swift */,
 				D1A6A5A62195B83900FE31BB /* CityLabTests.swift */,
 				D1A6A5A82195B83900FE31BB /* Info.plist */,
 			);
@@ -220,6 +250,24 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		D1F268812199E43700E635D4 /* CityLabBinarySearchTests */ = {
+			isa = PBXGroup;
+			children = (
+				D1F268822199E43700E635D4 /* CityLabBinarySearchTests.swift */,
+				D1F268842199E43700E635D4 /* Info.plist */,
+			);
+			path = CityLabBinarySearchTests;
+			sourceTree = "<group>";
+		};
+		D1F268922199F42C00E635D4 /* CityLabUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D1F268932199F42C00E635D4 /* CityLabUITests.swift */,
+				D1F268952199F42C00E635D4 /* Info.plist */,
+			);
+			path = CityLabUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -258,6 +306,24 @@
 			productReference = D1A6A5A22195B83900FE31BB /* CityLabTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D1F2687F2199E43700E635D4 /* CityLabBinarySearchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1F268892199E43700E635D4 /* Build configuration list for PBXNativeTarget "CityLabBinarySearchTests" */;
+			buildPhases = (
+				D1F2687C2199E43700E635D4 /* Sources */,
+				D1F2687D2199E43700E635D4 /* Frameworks */,
+				D1F2687E2199E43700E635D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D1F268862199E43700E635D4 /* PBXTargetDependency */,
+			);
+			name = CityLabBinarySearchTests;
+			productName = CityLabBinarySearchTests;
+			productReference = D1F268802199E43700E635D4 /* CityLabBinarySearchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -272,6 +338,10 @@
 						CreatedOnToolsVersion = 10.1;
 					};
 					D1A6A5A12195B83900FE31BB = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = D1A6A58B2195B83700FE31BB;
+					};
+					D1F2687F2199E43700E635D4 = {
 						CreatedOnToolsVersion = 10.1;
 						TestTargetID = D1A6A58B2195B83700FE31BB;
 					};
@@ -292,6 +362,7 @@
 			targets = (
 				D1A6A58B2195B83700FE31BB /* CityLab */,
 				D1A6A5A12195B83900FE31BB /* CityLabTests */,
+				D1F2687F2199E43700E635D4 /* CityLabBinarySearchTests */,
 			);
 		};
 /* End PBXProject section */
@@ -312,6 +383,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D1A6A5A02195B83900FE31BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1F2687E2199E43700E635D4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -342,7 +420,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1F2689C219A1A3500E635D4 /* RootCityLabTests.swift in Sources */,
 				D1A6A5A72195B83900FE31BB /* CityLabTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1F2687C2199E43700E635D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1F2688B2199E58900E635D4 /* JsonUtility.swift in Sources */,
+				D1F2688C2199E5B500E635D4 /* ArrayExt.swift in Sources */,
+				D1F2689D219A1B0E00E635D4 /* RootCityLabTests.swift in Sources */,
+				D1F2688A2199E56D00E635D4 /* City.swift in Sources */,
+				D1F268832199E43700E635D4 /* CityLabBinarySearchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +444,11 @@
 			isa = PBXTargetDependency;
 			target = D1A6A58B2195B83700FE31BB /* CityLab */;
 			targetProxy = D1A6A5A32195B83900FE31BB /* PBXContainerItemProxy */;
+		};
+		D1F268862199E43700E635D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D1A6A58B2195B83700FE31BB /* CityLab */;
+			targetProxy = D1F268852199E43700E635D4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -570,6 +666,46 @@
 			};
 			name = Release;
 		};
+		D1F268872199E43700E635D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MX6EDE7QQU;
+				INFOPLIST_FILE = CityLabBinarySearchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigabit.CityLabBinarySearchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CityLab.app/CityLab";
+			};
+			name = Debug;
+		};
+		D1F268882199E43700E635D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MX6EDE7QQU;
+				INFOPLIST_FILE = CityLabBinarySearchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigabit.CityLabBinarySearchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CityLab.app/CityLab";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -596,6 +732,15 @@
 			buildConfigurations = (
 				D1A6A5AF2195B83900FE31BB /* Debug */,
 				D1A6A5B02195B83900FE31BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1F268892199E43700E635D4 /* Build configuration list for PBXNativeTarget "CityLabBinarySearchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1F268872199E43700E635D4 /* Debug */,
+				D1F268882199E43700E635D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

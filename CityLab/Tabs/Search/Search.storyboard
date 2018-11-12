@@ -31,7 +31,7 @@
         <!--Search View Controller-->
         <scene sceneID="MuJ-1v-65P">
             <objects>
-                <viewController id="Ztx-Za-a9I" customClass="SearchViewController" customModule="CityLab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Search" id="Ztx-Za-a9I" customClass="SearchViewController" customModule="CityLab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EGu-y4-ucb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

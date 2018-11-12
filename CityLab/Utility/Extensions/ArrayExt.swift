@@ -44,7 +44,10 @@ extension Array where Element: SearchAble {
         
         while true {
             let mid = (lowerIndex + upperIndex)/2
+            let searchableValue = self[mid].searchValue
             
+            print("Searching: \(searchableValue) to match \(searchTerm)")
+
             if self[mid].searchValue.startsWith(searchTerm) {
                 return mid
             } else if lowerIndex > upperIndex {
@@ -62,6 +65,8 @@ extension Array where Element: SearchAble {
     /*
      Here we want to snip off trailing items not matching searchTerm to shrink the result set
      then the caller must remove any remaining non-matching items in a linear way
+     
+     Return: Should always return Int equal to or less than upper bounding index of self
      */
     func binaryPrefixSearchOutOfRange(searchTerm: String) -> Int {
         

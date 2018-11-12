@@ -9,25 +9,73 @@
 import XCTest
 @testable import CityLab
 
-class CityLabTests: XCTestCase {
-
+class CityLabTests: RootCityLabTests {
+    var controllerUnderTest: SearchViewController!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        
+        let mainSB = UIStoryboard(name: "Search", bundle: nil)
+        let searchNavVC = mainSB.instantiateViewController(withIdentifier: "Search") as? SearchViewController
+        
+        controllerUnderTest = searchNavVC
+        controllerUnderTest.dataSource = self.cityArray
+        controllerUnderTest.isNarrowingSearch = true
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        controllerUnderTest = nil
+        super.tearDown()
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testSUT_canBeInstantiated() {
+        XCTAssertNotNil(controllerUnderTest, "Search view controller is missing")
     }
+    
+    func testSUT_hasSearchBar() {
+        XCTAssertNotNil(controllerUnderTest.searchController.searchBar, "Search controller has no search bar")
+    }
+    
+    func testSUT_hasSearchBarHasDelegate() {
+        XCTAssertNotNil(controllerUnderTest.searchController.searchBar.delegate, "Search bar has no delegate")
+    }
+    
+    func testSUT_canPerformPrefixSearchPass() {
+        controllerUnderTest.processSearchResults(searchTerm: "New O")
+        XCTAssertEqual(controllerUnderTest.dataSource.count, 2, "Search results count should be 2")
+        
+        controllerUnderTest.processSearchResults(searchTerm: "New Or")
+        XCTAssertEqual(controllerUnderTest.dataSource.count, 1, "Search results count should be 1")
+    }
+    
+    func testSUT_canPerformPrefixSearchFail() {
+        controllerUnderTest.processSearchResults(searchTerm: "New O")
+        XCTAssertNotEqual(controllerUnderTest.dataSource.count, 0, "Search results count should not be 0")
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
+        controllerUnderTest.processSearchResults(searchTerm: "New Or")
+        XCTAssertNotEqual(controllerUnderTest.dataSource.count, 0, "Search results count should not be 0")
+    }
+    
+    func testPerformanceSearchAddOnly() {
+
         self.measure {
-            // Put the code you want to measure the time of here.
+            controllerUnderTest.processSearchResults(searchTerm: "Chi")
+            controllerUnderTest.processSearchResults(searchTerm: "Chic")
+            controllerUnderTest.processSearchResults(searchTerm: "Chica")
+            controllerUnderTest.processSearchResults(searchTerm: "Chicago")
+        }
+    }
+    
+    func testPerformanceSearchAddDelete() {
+        controllerUnderTest.masterDataSource = cityArray
+        self.measure {
+            controllerUnderTest.processSearchResults(searchTerm: "Chi")
+            controllerUnderTest.processSearchResults(searchTerm: "Chic")
+            controllerUnderTest.isNarrowingSearch = false
+            controllerUnderTest.processSearchResults(searchTerm: "Chi")
+            controllerUnderTest.isNarrowingSearch = true
+            controllerUnderTest.processSearchResults(searchTerm: "Chica")
+            controllerUnderTest.processSearchResults(searchTerm: "Chicago")
         }
     }
 
