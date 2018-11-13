@@ -36,6 +36,9 @@ class CityLabTests: RootCityLabTests {
         XCTAssertNotNil(controllerUnderTest.searchController.searchBar, "Search controller has no search bar")
     }
     
+    /*
+        Test that search results count equals correct amount
+    */
     func testSUT_canPerformPrefixSearchPass() {
         controllerUnderTest.processSearchResults(searchTerm: "New O")
         XCTAssertEqual(controllerUnderTest.dataSource.count, 2, "Search results count should be 2")
@@ -44,12 +47,25 @@ class CityLabTests: RootCityLabTests {
         XCTAssertEqual(controllerUnderTest.dataSource.count, 1, "Search results count should be 1")
     }
     
+    /*
+     Test that search results count does not equal zero
+     */
     func testSUT_canPerformPrefixSearchFail() {
         controllerUnderTest.processSearchResults(searchTerm: "New O")
         XCTAssertNotEqual(controllerUnderTest.dataSource.count, 0, "Search results count should not be 0")
-
+        
         controllerUnderTest.processSearchResults(searchTerm: "New Or")
         XCTAssertNotEqual(controllerUnderTest.dataSource.count, 0, "Search results count should not be 0")
+    }
+    
+    /*
+     Test that search results count is not greater than zero when there is no match
+     */
+    func testSUT_canPerformPrefixSearchIsZero() {
+        controllerUnderTest.processSearchResults(searchTerm: "Cambodia")
+        
+        let exp = controllerUnderTest.dataSource.count > 0
+        XCTAssertTrue(exp == false, "Search results count should not be greater than 0")
     }
     
     func testPerformanceSearchAddOnly() {
