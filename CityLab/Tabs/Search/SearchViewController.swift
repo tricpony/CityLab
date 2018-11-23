@@ -40,7 +40,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         pinwheel.startAnimating()
         
         //allows the pinwheel to spin
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .background).async { [unowned self] in
             self.prepareData()
         }
     }
@@ -58,7 +58,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         }
         if let cities = JsonUtility<City>.parseJSON(cityData) {
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.pinwheel.stopAnimating()
                 self.pinwheel.isHidden = true
                 self.tableView.isHidden = false
