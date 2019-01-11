@@ -10,7 +10,7 @@ import Foundation
 
 struct JsonUtility<T: Decodable> {
     
-    static func parseJSON(_ payload: Data?) -> [T]? {
+    static func parseJSON(_ payload: Data?) -> T? {
         
         if payload == nil {
             return nil
@@ -19,7 +19,7 @@ struct JsonUtility<T: Decodable> {
         let decoder = JSONDecoder()
         
         do {
-            let decoded = try decoder.decode([T].self, from: payload!)
+            let decoded = try decoder.decode(T.self, from: payload!)
             
             return decoded
         } catch {

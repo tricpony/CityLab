@@ -56,7 +56,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
-        if let cities = JsonUtility<City>.parseJSON(cityData) {
+        if let cities = JsonUtility<[City]>.parseJSON(cityData) {
             
             DispatchQueue.main.async { [unowned self] in
                 self.pinwheel.stopAnimating()
